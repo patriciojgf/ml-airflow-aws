@@ -7,7 +7,7 @@ port=       os.environ.get('MODEL_DB_PORT')
 user=       os.environ.get('MODEL_DB_USER')
 password=   os.environ.get('MODEL_DB_PASS')
 
-engine = create_engine(f'postgresql://{user}:{password}@{host}:{port}/postgres')
+engine = create_engine(f'postgresql://{user}:{password}@{host}:5432/postgres')
 print('engine created')
 
 
