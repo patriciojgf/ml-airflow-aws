@@ -98,6 +98,12 @@ The daily batch process would be as follows:
 - trained_model/trained_model.pkl
   - This file contains the trained model.
 
+# Database Tables
+
+- attried_clients_probabily
+  - This table contains the information of the bank's customers that we predict to switch banks.
+- credit_card_clients
+  - This table contains the historical information of the bank's customers.
 
 # Proposed AWS architecture
 ![Visual](/infra/img/infra.png)
@@ -121,3 +127,39 @@ The daily batch process would be as follows:
   - RDS Subnet
     - rds_private_01: 172.30.8.0/24
     - rds_private_02: 172.30.9.0/24
+
+
+# Necessary Environment Variables
+
+```bash
+DB_USER=clients
+DB_PASSWORD=clients
+DB_HOSTNAME=postgres
+ROOT_USER=clients
+ROOT_PASSWORD=clients
+
+MODEL_DB_USER='postgres'
+MODEL_DB_PASS=''
+MODEL_DB_HOST=''
+MODEL_DB_PORT='5432'
+
+AWS_ACCESS_KEY_ID=''
+AWS_SECRET_ACCESS_KEY=''
+AWS_SESSION_TOKEN=''
+
+BUCKET_NAME = ''
+```
+
+# Implementation
+
+## First, make the historical customer information available in a database:
+
+- Create a PostgreSQL database
+- Initialize the table with the script model_database/load_tables.py, which takes the file model_database/raw_data/BankChurners.csv.gz
+
+## Second, create the necessary infrastructure for the project:
+
+- Create an S3 bucket
+- Clone the project on an EC2 instance with access to the database
+- Create an .env file within the project with the necessary environment variables
+- Set up the Apache Airflow environment using the dockers-compose.yaml file and run the DAGs.
