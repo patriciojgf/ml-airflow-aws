@@ -1,10 +1,10 @@
 import pandas as pd
 from sqlalchemy import create_engine
 
-host='creditcardclientattrition.cgxic12usgz2.us-east-1.rds.amazonaws.com'
+host=''
 port='5432'
 user='postgres'
-password='4dadPxHWdr7bK#3YczPw'
+password=''
 
 engine = create_engine(f'postgresql://{user}:{password}@{host}:{port}/postgres')
 # engine = create_engine('postgresql://postgres:postgres@creditcardclientattrition.cgxic12usgz2.us-east-1.rds.amazonaws.com

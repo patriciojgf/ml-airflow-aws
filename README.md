@@ -67,7 +67,7 @@ The daily batch process would be as follows:
 - The probable customers with a probability of switching banks are loaded into a table in the physical model.
 
 # Results
-- ![Visual](/infra/img/results.png)
+![Visual](/infra/img/results.png)
 
 # Dags
 
@@ -84,12 +84,28 @@ The daily batch process would be as follows:
 - load_attried_clients_probabily: 
   - The results are loaded into the 'attried_clients_probabily' table.
 
+
+# Files
+
+- initial_database_load/BankChurners.csv.gz: 
+  - This file contains the historical information of the bank's customers, and is used to load the database on the first run.
+- to_predict/data_to_be_predicted${date}.csv
+  - This file contains the information of the bank's customers that we want to predict.
+- predicted/predicted/credit_card_clients${date}.csv.gz'
+  - This file contains the information of predicted attrition_flag for each customer.
+- to_train/credit_card_clients${date}.csv.gz
+  - This file contains the information of the bank's customers that we want to train the model.
+- trained_model/trained_model.pkl
+  - This file contains the trained model.
+
+
 # Proposed AWS architecture
-- ![Visual](/infra/img/infra.png)
+![Visual](/infra/img/infra.png)
 
 # S3 Bucket and Folders
 -  tp-itba-2022-ml-airflow
-   -  initial_database_load   -  model
+   -  initial_database_load   
+   -  model
    -  predicted
    -  to_predict
    -  to_train

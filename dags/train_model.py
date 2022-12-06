@@ -276,7 +276,7 @@ def train_model(date):
 
     # #Save model to S3 Bucket
     try:
-        s3_management.upload_csv_file('dags/model/trained_model.pkl', bucket_name, 'model/trained_model.pkl')
+        s3_management.upload_csv_file('dags/model/trained_model.pkl', bucket_name, 'trained_model/trained_model.pkl')
         print(f'Archivo trained_model.pkl cargado, en carpeta model')
     except Exception as e:
         print(f'Error al cargar archivo trained_model.pkl')
