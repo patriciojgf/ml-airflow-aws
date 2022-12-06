@@ -41,7 +41,6 @@
 ├── data
 │   ├── predicted
 │   ├── to_predict
-│   │   └── trained_model.pkl
 │   └── to_train
 ├── docker-compose.yaml
 ├── model_database
