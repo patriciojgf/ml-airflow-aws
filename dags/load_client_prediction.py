@@ -22,7 +22,14 @@ def load_credit_card_clients_data(date):
     df2['date']=date
     
     try:
-        df.to_sql('attried_clients_probabily' , engine, if_exists='append', index=False)
+        resultado=engine.execute(f"DELETE FROM attried_clients_probabily WHERE date = '{date}'")
+        print(f'deleted rows: ',resultado.rowcount)
+    except Exception as e:
+        print(f'Error al eliminar archivo {nombre_archivo} de la base de datos')
+        print(e)    
+    
+    try:
+        df2.to_sql('attried_clients_probabily' , engine, if_exists='append', index=False)
         print(f'Archivo {nombre_archivo} cargado')
     except Exception as e:
         print(f'Error al cargar archivo {nombre_archivo}')

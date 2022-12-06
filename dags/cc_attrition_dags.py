@@ -6,6 +6,7 @@ from airflow.operators.dummy_operator import DummyOperator
 from db_credit_card_client import load_csv_to_s3
 from train_model import train_model
 import predict
+import load_client_prediction
 
 def start():
     print('Starting the DAG')
@@ -29,6 +30,11 @@ def predict_credict_card_attrition(**context):
     new_data_predicted=predict.predict_attrition_flag(data_to_be_predicted_union,data)
     predict.save_to_csv(new_data_predicted,date)
     predict.delete_local_file(date)
+
+def load_attried_clients_probabily(**context):
+    print('Loading attried clients probabily')    
+    date = f"{context['logical_date']:%Y%m%d}"
+    load_attried_clients_probabily.load_credit_card_clients_data(date)
     
 
 default_args = {
