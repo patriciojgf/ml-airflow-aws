@@ -34,7 +34,7 @@ def predict_credict_card_attrition(**context):
 def load_attried_clients_probabily(**context):
     print('Loading attried clients probabily')    
     date = f"{context['logical_date']:%Y%m%d}"
-    load_attried_clients_probabily.load_credit_card_clients_data(date)
+    load_client_prediction.load_credit_card_clients_data(date)
     
 
 default_args = {
@@ -65,6 +65,12 @@ with DAG(
         python_callable=predict_credict_card_attrition,
         provide_context=True,
     )
+    load_attried_clients_probabily = PythonOperator(
+        task_id='load_attried_clients_probabily',
+        python_callable=load_attried_clients_probabily,
+        provide_context=True,      
+    )
+        
     end_dummy = DummyOperator(task_id='end')
-    start_dummy >> download_credit_card_data >> train_credict_card_model >> predict_credict_card_attrition >> end_dummy
+    start_dummy >> download_credit_card_data >> train_credict_card_model >> predict_credict_card_attrition >> load_attried_clients_probabily >> end_dummy
     start_dummy >> end_dummy

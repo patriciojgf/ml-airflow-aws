@@ -29,6 +29,15 @@ def load_credit_card_clients_data(date):
     #convert to float64
     df['Naive_Bayes_Classifier_Attrition_Flag_1'] = df['Naive_Bayes_Classifier_Attrition_Flag_1'].str.replace(',','.').astype('float64')
 
+    #delete from database where date is equal to date with sqlalchemy
+    try:
+        engine.execute(f"DELETE FROM credit_card_clients_attried WHERE date = '{date}'")
+        print(f'Archivo {nombre_archivo} eliminado de la base de datos')
+    except Exception as e:
+        print(f'Error al eliminar archivo {nombre_archivo} de la base de datos')
+        print(e)
+    
+    
     try:
         df.to_sql('credit_card_clients_attried', engine, if_exists='append', index=False)
         print(f'Archivo {nombre_archivo} cargado')
@@ -36,6 +45,4 @@ def load_credit_card_clients_data(date):
         print(f'Error al cargar archivo {nombre_archivo}')
         print(e)
     
-    df.dtypes
     
-    df.T
