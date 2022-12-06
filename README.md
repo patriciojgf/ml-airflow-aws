@@ -22,6 +22,11 @@
 - [Proposed AWS architecture](#Proposed-AWS-architecture)
 - [S3 Bucket and Folders](#S3-Bucket-and-Folders)
 - [VPC Network Structure](#VPC-Network-Structure)
+- [Necessary Environment Variables](#Necessary-Environment-Variables)
+- [Database Tables](#Database-Tables)
+- [Files](#Files)
+- [Implementation](#Implementation)
+
 
 # Project structure
 
@@ -80,8 +85,8 @@ The daily batch process would be as follows:
 - **predict_credict_card_attrition**
   - The file of clients that we want to predict with the trained model is downloaded, the Attrition_Flag is calculated, and the results are saved in a file.
  
-- **load_attried_clients_probabily**
-  - The results are loaded into the 'attried_clients_probabily' table.
+- **load_attried_clients_probability**
+  - The results are loaded into the 'attried_clients_probability' table.
 
 
 # Files
@@ -99,7 +104,7 @@ The daily batch process would be as follows:
 
 # Database Tables
 
-- **attried_clients_probabily**
+- **attried_clients_probability**
   - This table contains the information of the bank's customers that we predict to switch banks.
 - **credit_card_clients**
   - This table contains the historical information of the bank's customers.
