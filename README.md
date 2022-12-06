@@ -73,43 +73,43 @@ The daily batch process would be as follows:
 
 ![Visual](/infra/img/dags.png)
 
-- download_credit_card_data: 
+- **download_credit_card_data**
   - In this first step, the historical information from the database is downloaded, and the file that will be used to train the model is generated.
-- train_credict_card_model: 
+- **train_credict_card_model**
   - The model is trained and saved in a PKL file.
 
-- predict_credict_card_attrition: 
+- **predict_credict_card_attrition**
   - The file of clients that we want to predict with the trained model is downloaded, the Attrition_Flag is calculated, and the results are saved in a file.
  
-- load_attried_clients_probabily: 
+- **load_attried_clients_probabily**
   - The results are loaded into the 'attried_clients_probabily' table.
 
 
 # Files
 
-- initial_database_load/BankChurners.csv.gz: 
+- **initial_database_load/BankChurners.csv.gz**
   - This file contains the historical information of the bank's customers, and is used to load the database on the first run.
-- to_predict/data_to_be_predicted${date}.csv
+- **to_predict/data_to_be_predicted${date}.csv**
   - This file contains the information of the bank's customers that we want to predict.
-- predicted/predicted/credit_card_clients${date}.csv.gz'
+- **predicted/predicted/credit_card_clients${date}.csv.gz**
   - This file contains the information of predicted attrition_flag for each customer.
-- to_train/credit_card_clients${date}.csv.gz
+- **to_train/credit_card_clients${date}.csv.gz**
   - This file contains the information of the bank's customers that we want to train the model.
-- trained_model/trained_model.pkl
+- **trained_model/trained_model.pkl**
   - This file contains the trained model.
 
 # Database Tables
 
-- attried_clients_probabily
+- **attried_clients_probabily**
   - This table contains the information of the bank's customers that we predict to switch banks.
-- credit_card_clients
+- **credit_card_clients**
   - This table contains the historical information of the bank's customers.
 
 # Proposed AWS architecture
 ![Visual](/infra/img/infra.png)
 
 # S3 Bucket and Folders
--  tp-itba-2022-ml-airflow
+-  **tp-itba-2022-ml-airflow**
    -  initial_database_load   
    -  model
    -  predicted
@@ -117,13 +117,13 @@ The daily batch process would be as follows:
    -  to_train
 
 # VPC Network Structure
-- VPC: 
+- **VPC** 
   - IPv4 CIDR: 172.30.0.0/16
 
-- Public Subnet: 
+- **Public Subnet**
     - ml-cc-airflow-01: 172.30.7.0/24
 
-- Private Subnets:
+- **Private Subnets**
   - RDS Subnet
     - rds_private_01: 172.30.8.0/24
     - rds_private_02: 172.30.9.0/24
