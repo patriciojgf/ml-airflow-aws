@@ -136,12 +136,6 @@ The daily batch process would be as follows:
 # Necessary Environment Variables
 
 ```bash
-DB_USER=clients
-DB_PASSWORD=clients
-DB_HOSTNAME=postgres
-ROOT_USER=clients
-ROOT_PASSWORD=clients
-
 MODEL_DB_USER='postgres'
 MODEL_DB_PASS=''
 MODEL_DB_HOST=''
